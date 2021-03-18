@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.openbank.techtest",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "gateway",
+    "baseName": "gwtechtestopenbank",
+    "packageName": "com.openbank.techtest",
+    "packageFolder": "com/openbank/techtest",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTZlMWE4M2IyYTg2YmQ1MWY5ODJmM2ZlZmIzMjY0MTczMWIyOWNmMjI1MThkMDQxYmU3NzBlMTkyMWNhOTYwYWMzYTNlMGUxNmUyN2NlNTAxMjIyM2JkMzM1MzdlMDZlM2E4MWJiMmRiZDgyZmU0NDdmMDM1ZDY0NTQxMTAzNGM=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "darkly",
+    "clientThemeVariant": "dark",
+    "creationTimestamp": 1616047689730,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "es"],
+    "blueprints": []
+  }
+}
