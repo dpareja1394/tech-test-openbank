@@ -396,9 +396,9 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <release>${java.version}</release>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <!-- <release>${java.version}</release> -->
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.springframework.boot</groupId>
