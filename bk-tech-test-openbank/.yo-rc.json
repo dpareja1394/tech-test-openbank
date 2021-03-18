@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.openbank.techtest",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "microservice",
+    "baseName": "bktechtestopenbank",
+    "packageName": "com.openbank.techtest",
+    "packageFolder": "com/openbank/techtest",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDhlMmU2ZDE0NDRmOGRlM2QyYTNjOTA4M2JmYmM4NmYzZGU4NmEyMWQ2NmUxNGNlNGQ2NTI2M2FlMzI0ZWIyMGJmNjdmMzQ0ZWQ5ZWEzZGRiMTUyZDJjOWE1ODQ4M2ZiOTllZjExMTBiNGIzYzlhZmZjZTY5MzliNDI3YTM2OTg=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1616046625949,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": ["en", "es"],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
