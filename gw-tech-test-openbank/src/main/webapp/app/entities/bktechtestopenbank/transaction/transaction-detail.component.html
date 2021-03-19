@@ -47,7 +47,7 @@
                 <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.transactionType">Transaction Type</span></dt>
                 <dd>
                     <div *ngIf="transaction.transactionTypeId">
-                        <a [routerLink]="['/transaction-type', transaction.transactionTypeId, 'view']">{{ transaction.transactionTypeId }}</a>
+                        <a [routerLink]="['/transaction-type', transaction.transactionTypeId, 'view']">{{ transaction.transactionType ? transaction.transactionType.nameTransactionType : '' }}</a>
                     </div>
                 </dd>
             </dl>

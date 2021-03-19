@@ -2,6 +2,9 @@ package com.openbank.techtest.service.dto;
 
 import io.swagger.annotations.ApiModel;
 import javax.validation.constraints.*;
+
+import com.openbank.techtest.domain.TransactionType;
+
 import java.io.Serializable;
 
 /**
@@ -41,6 +44,15 @@ public class TransactionDTO implements Serializable {
 
 
     private Long transactionTypeId;
+    
+    /**
+     *
+     * @author Daniel Pareja Londoño
+     * @version Mar 18, 2021
+     * @since 1.8
+     *
+     */
+    private TransactionType transactionType;
     
     public Long getId() {
         return id;
@@ -130,7 +142,31 @@ public class TransactionDTO implements Serializable {
         this.transactionTypeId = transactionTypeId;
     }
 
-    @Override
+    /**
+	 *
+	 * @author Daniel Pareja Londoño
+	 * @version Mar 18, 2021
+	 * @since 1.8
+	 * @return The transactionType
+	 *
+	 */
+	public TransactionType getTransactionType() {
+		return transactionType;
+	}
+
+	/**
+	 *
+	 * @param transactionType The transactionType to set
+	 * @author Daniel Pareja Londoño
+	 * @version Mar 18, 2021
+	 * @since 1.8
+	 *
+	 */
+	public void setTransactionType(TransactionType transactionType) {
+		this.transactionType = transactionType;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

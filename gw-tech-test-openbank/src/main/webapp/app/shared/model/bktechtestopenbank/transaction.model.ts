@@ -1,3 +1,5 @@
+import { TransactionType } from './transaction-type.model';
+
 export interface ITransaction {
   id?: number;
   accountId?: number;
@@ -10,6 +12,7 @@ export interface ITransaction {
   transactionCurrency?: string;
   description?: string;
   transactionTypeId?: number;
+  transactionType?: TransactionType;
 }
 
 export class Transaction implements ITransaction {
@@ -24,6 +27,7 @@ export class Transaction implements ITransaction {
     public transactionAmount?: number,
     public transactionCurrency?: string,
     public description?: string,
-    public transactionTypeId?: number
+    public transactionTypeId?: number,
+    public transactionType?: TransactionType
   ) {}
 }

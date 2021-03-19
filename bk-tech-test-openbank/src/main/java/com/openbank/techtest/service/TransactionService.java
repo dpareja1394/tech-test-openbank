@@ -1,10 +1,12 @@
 package com.openbank.techtest.service;
 
+import com.openbank.techtest.service.dto.ResponseTransactionDTO;
 import com.openbank.techtest.service.dto.TransactionDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,4 +45,42 @@ public interface TransactionService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    
+    /**
+     * Find the transactions filter for field TransactionTypeId
+     *
+     * @author Daniel Pareja Londoño
+     * @version Mar 19, 2021
+     * @since 1.8
+     * @param transactionTypeId
+	 * @return <b>{@code List<TransactionDTO>}</b> 
+     *
+     */
+    List<TransactionDTO> findByTransactionTypeId(Long transactionTypeId);
+    
+    /**
+     * Calcule the Total from transactions list
+     *
+     * @author Daniel Pareja Londoño
+     * @version Mar 19, 2021
+     * @since 1.8
+     * @param transactions
+     * @return <b>{@code Integer total}</b> Start here...
+     *
+     */
+    Integer totalAmountByTransactionType(List<TransactionDTO> transactions);
+    
+    /**
+     * Return DTO Object with Transaction List and Total Transaction Amount
+     *
+     * @author Daniel Pareja Londoño
+     * @version Mar 19, 2021
+     * @since 1.8
+     * @param transactionTypeId
+     * @return
+     * @return <b>{@code }</b> Start here...
+     *
+     */
+    ResponseTransactionDTO findTransactionsByTransactionType(Long transactionTypeId);
+    
 }
