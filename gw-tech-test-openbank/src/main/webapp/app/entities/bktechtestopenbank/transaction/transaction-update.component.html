@@ -1,0 +1,164 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-transaction-heading" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.home.createOrEditLabel">Create or edit a Transaction</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.accountId" for="field_accountId">Account Id</label>
+                    <input type="number" class="form-control" name="accountId" id="field_accountId"
+                           formControlName="accountId"/>
+                    <div *ngIf="editForm.get('accountId')!.invalid && (editForm.get('accountId')!.dirty || editForm.get('accountId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('accountId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('accountId')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.counterPartyAccount" for="field_counterPartyAccount">Counter Party Account</label>
+                    <input type="number" class="form-control" name="counterPartyAccount" id="field_counterPartyAccount"
+                           formControlName="counterPartyAccount"/>
+                    <div *ngIf="editForm.get('counterPartyAccount')!.invalid && (editForm.get('counterPartyAccount')!.dirty || editForm.get('counterPartyAccount')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('counterPartyAccount')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('counterPartyAccount')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.counterPartyName" for="field_counterPartyName">Counter Party Name</label>
+                    <input type="text" class="form-control" name="counterPartyName" id="field_counterPartyName"
+                           formControlName="counterPartyName"/>
+                    <div *ngIf="editForm.get('counterPartyName')!.invalid && (editForm.get('counterPartyName')!.dirty || editForm.get('counterPartyName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('counterPartyName')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.counterPartyLogoPath" for="field_counterPartyLogoPath">Counter Party Logo Path</label>
+                    <input type="text" class="form-control" name="counterPartyLogoPath" id="field_counterPartyLogoPath"
+                           formControlName="counterPartyLogoPath"/>
+                    <div *ngIf="editForm.get('counterPartyLogoPath')!.invalid && (editForm.get('counterPartyLogoPath')!.dirty || editForm.get('counterPartyLogoPath')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('counterPartyLogoPath')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.instructedAmount" for="field_instructedAmount">Instructed Amount</label>
+                    <input type="number" class="form-control" name="instructedAmount" id="field_instructedAmount"
+                           formControlName="instructedAmount"/>
+                    <div *ngIf="editForm.get('instructedAmount')!.invalid && (editForm.get('instructedAmount')!.dirty || editForm.get('instructedAmount')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('instructedAmount')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('instructedAmount')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.instructedCurrency" for="field_instructedCurrency">Instructed Currency</label>
+                    <input type="text" class="form-control" name="instructedCurrency" id="field_instructedCurrency"
+                           formControlName="instructedCurrency"/>
+                    <div *ngIf="editForm.get('instructedCurrency')!.invalid && (editForm.get('instructedCurrency')!.dirty || editForm.get('instructedCurrency')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('instructedCurrency')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.transactionAmount" for="field_transactionAmount">Transaction Amount</label>
+                    <input type="number" class="form-control" name="transactionAmount" id="field_transactionAmount"
+                           formControlName="transactionAmount"/>
+                    <div *ngIf="editForm.get('transactionAmount')!.invalid && (editForm.get('transactionAmount')!.dirty || editForm.get('transactionAmount')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transactionAmount')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('transactionAmount')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.transactionCurrency" for="field_transactionCurrency">Transaction Currency</label>
+                    <input type="text" class="form-control" name="transactionCurrency" id="field_transactionCurrency"
+                           formControlName="transactionCurrency"/>
+                    <div *ngIf="editForm.get('transactionCurrency')!.invalid && (editForm.get('transactionCurrency')!.dirty || editForm.get('transactionCurrency')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transactionCurrency')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.transactionType" for="field_transactionType">Transaction Type</label>
+                    <select class="form-control" id="field_transactionType" name="transactionType" formControlName="transactionTypeId">
+                        <option *ngIf="!editForm.get('transactionTypeId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="transactionTypeOption.id" *ngFor="let transactionTypeOption of transactiontypes; trackBy: trackById">{{ transactionTypeOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('transactionTypeId')!.invalid && (editForm.get('transactionTypeId')!.dirty || editForm.get('transactionTypeId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('transactionTypeId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

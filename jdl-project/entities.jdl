@@ -1,0 +1,33 @@
+/**
+ * Transaction
+ * @author Daniel Pareja
+ * @date 18 Mar 2021
+ */
+entity Transaction {
+    accountId Integer required
+    counterPartyAccount Integer required
+    counterPartyName String required
+    counterPartyLogoPath String required
+    instructedAmount Integer required
+    instructedCurrency String required
+    transactionAmount Integer required
+    transactionCurrency String required
+    description String required
+}
+/**
+ * TransactionType
+ * @author Daniel Pareja
+ * @date 18 Mar 2021
+ */
+entity TransactionType {
+	nameTransactionType String required
+}
+
+relationship ManyToOne {
+	Transaction{transactionType required} to TransactionType
+}
+
+dto all with mapstruct
+paginate all with pagination
+service all with serviceImpl
+microservice * with bktechtestopenbank

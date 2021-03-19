@@ -1,0 +1,35 @@
+{
+  "gwtechtestopenbankApp": {
+    "bktechtestopenbankTransaction": {
+      "home": {
+        "title": "Transactions",
+        "createLabel": "Create a new Transaction",
+        "createOrEditLabel": "Create or edit a Transaction",
+        "notFound": "No Transactions found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaction"
+      },
+      "accountId": "Account Id",
+      "counterPartyAccount": "Counter Party Account",
+      "counterPartyName": "Counter Party Name",
+      "counterPartyLogoPath": "Counter Party Logo Path",
+      "instructedAmount": "Instructed Amount",
+      "instructedCurrency": "Instructed Currency",
+      "transactionAmount": "Transaction Amount",
+      "transactionCurrency": "Transaction Currency",
+      "description": "Description",
+      "transactionType": "Transaction Type"
+    }
+  },
+  "bktechtestopenbankApp": {
+    "bktechtestopenbankTransaction": {
+      "created": "A new Transaction is created with identifier {{ param }}",
+      "updated": "A Transaction is updated with identifier {{ param }}",
+      "deleted": "A Transaction is deleted with identifier {{ param }}"
+    }
+  }
+}

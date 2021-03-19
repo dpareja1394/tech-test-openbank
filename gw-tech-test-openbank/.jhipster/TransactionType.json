@@ -1,0 +1,26 @@
+{
+  "name": "TransactionType",
+  "fields": [
+    {
+      "fieldName": "nameTransactionType",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210319035339",
+  "javadoc": "TransactionType\\n@author Daniel Pareja\\n@date 18 Mar 2021",
+  "entityTableName": "transaction_type",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "microserviceName": "bktechtestopenbank"
+}

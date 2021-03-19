@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transaction">
+            <h2><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.detail.title">Transaction</span> {{ transaction.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.accountId">Account Id</span></dt>
+                <dd>
+                    <span>{{ transaction.accountId }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.counterPartyAccount">Counter Party Account</span></dt>
+                <dd>
+                    <span>{{ transaction.counterPartyAccount }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.counterPartyName">Counter Party Name</span></dt>
+                <dd>
+                    <span>{{ transaction.counterPartyName }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.counterPartyLogoPath">Counter Party Logo Path</span></dt>
+                <dd>
+                    <span>{{ transaction.counterPartyLogoPath }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.instructedAmount">Instructed Amount</span></dt>
+                <dd>
+                    <span>{{ transaction.instructedAmount }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.instructedCurrency">Instructed Currency</span></dt>
+                <dd>
+                    <span>{{ transaction.instructedCurrency }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.transactionAmount">Transaction Amount</span></dt>
+                <dd>
+                    <span>{{ transaction.transactionAmount }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.transactionCurrency">Transaction Currency</span></dt>
+                <dd>
+                    <span>{{ transaction.transactionCurrency }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.description">Description</span></dt>
+                <dd>
+                    <span>{{ transaction.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="gwtechtestopenbankApp.bktechtestopenbankTransaction.transactionType">Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="transaction.transactionTypeId">
+                        <a [routerLink]="['/transaction-type', transaction.transactionTypeId, 'view']">{{ transaction.transactionTypeId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transaction', transaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
