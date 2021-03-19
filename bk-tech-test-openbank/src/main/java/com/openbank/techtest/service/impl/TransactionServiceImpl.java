@@ -112,7 +112,7 @@ public class TransactionServiceImpl implements TransactionService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseTransactionDTO findTransactionsByTransactionType(Long transactionTypeId) {
+	public Optional<ResponseTransactionDTO> findTransactionsByTransactionType(Long transactionTypeId) {
 		List<TransactionDTO> transactionsDTO = this.findByTransactionTypeId(transactionTypeId);
 		
 		Integer totalAmount = this.totalAmountByTransactionType(transactionsDTO);
@@ -120,6 +120,6 @@ public class TransactionServiceImpl implements TransactionService {
 		ResponseTransactionDTO responseTransactionDTO = new ResponseTransactionDTO();
 		responseTransactionDTO.setTotalAmmountForTransactionType(totalAmount);
 		responseTransactionDTO.setTransactionsFilterByTransactionType(transactionsDTO);
-		return responseTransactionDTO;
+		return Optional.of(responseTransactionDTO);
 	}
 }

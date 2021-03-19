@@ -2,6 +2,7 @@ package com.openbank.techtest.web.rest;
 
 import com.openbank.techtest.service.TransactionService;
 import com.openbank.techtest.web.rest.errors.BadRequestAlertException;
+import com.openbank.techtest.service.dto.ResponseTransactionDTO;
 import com.openbank.techtest.service.dto.TransactionDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -122,5 +123,18 @@ public class TransactionResource {
         log.debug("REST request to delete Transaction : {}", id);
         transactionService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+    
+    /**
+     * {@code GET  /transactions/findTransactionsByTransactionType/:transactionTypeId} : get the "transactionTypeId".
+     *
+     * @param transactionTypeId
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the transactionDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/transactions/findTransactionsByTransactionType/{transactionTypeId}")
+    public ResponseEntity<ResponseTransactionDTO> findTransactionsByTransactionType(@PathVariable Long transactionTypeId) {
+        log.debug("REST request to findTransactionsByTransactionType : {}", transactionTypeId);
+        Optional<ResponseTransactionDTO> responseTransactionDTO = transactionService.findTransactionsByTransactionType(transactionTypeId);
+        return ResponseUtil.wrapOrNotFound(responseTransactionDTO);
     }
 }

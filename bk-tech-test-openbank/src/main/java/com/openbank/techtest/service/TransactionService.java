@@ -81,6 +81,6 @@ public interface TransactionService {
      * @return <b>{@code }</b> Start here...
      *
      */
-    ResponseTransactionDTO findTransactionsByTransactionType(Long transactionTypeId);
+    Optional<ResponseTransactionDTO> findTransactionsByTransactionType(Long transactionTypeId);
     
 }
