@@ -10,6 +10,8 @@ import { ITransaction } from 'app/shared/model/bktechtestopenbank/transaction.mo
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { TransactionService } from './transaction.service';
 import { TransactionDeleteDialogComponent } from './transaction-delete-dialog.component';
+import { ITransactionType } from 'app/shared/model/bktechtestopenbank/transaction-type.model';
+import { TransactionTypeService } from '../transaction-type/transaction-type.service';
 
 @Component({
   selector: 'jhi-transaction',
@@ -25,32 +27,37 @@ export class TransactionComponent implements OnInit, OnDestroy {
   ascending!: boolean;
   ngbPaginationPage = 1;
 
+  transactionsFilterByTransactionType?: ITransaction[];
+  transactionTypes?: ITransactionType[];
+  selectedTransactionTypeId = 0;
+  totalAmmount = 0;
+
   constructor(
     protected transactionService: TransactionService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected transactionTypeService: TransactionTypeService
   ) {}
 
-  loadPage(page?: number, dontNavigate?: boolean): void {
-    const pageToLoad: number = page || this.page || 1;
-
-    this.transactionService
-      .query({
-        page: pageToLoad - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
-      .subscribe(
-        (res: HttpResponse<ITransaction[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
-        () => this.onError()
-      );
+  loadPage(): void {
+    this.transactionService.findAll().subscribe(
+      (res: HttpResponse<ITransaction[]>) => (this.transactions = res.body || []),
+      () => this.onError()
+    );
   }
 
   ngOnInit(): void {
     this.handleNavigation();
     this.registerChangeInTransactions();
+    this.transactionTypeService.findAll().subscribe((res: HttpResponse<ITransactionType[]>) => (this.transactionTypes = res.body || []));
+    this.transactionService
+      .totalAmountByTransactionType(this.selectedTransactionTypeId)
+      .toPromise()
+      .then(res => {
+        this.totalAmmount = res.body || 0;
+      });
   }
 
   protected handleNavigation(): void {
@@ -63,7 +70,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
       if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
         this.predicate = predicate;
         this.ascending = ascending;
-        this.loadPage(pageNumber, true);
+        this.loadPage();
       }
     }).subscribe();
   }
@@ -114,5 +121,32 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  filterByTransactionType(): void {
+    // eslint-disable-next-line no-console
+    console.log('Change filter to ', this.selectedTransactionTypeId);
+    if (this.selectedTransactionTypeId === 0) {
+      this.transactionService
+        .findAll()
+        .toPromise()
+        .then(res => {
+          this.transactions = res.body || [];
+        });
+    } else {
+      this.transactionService
+        .findTransactionsByTransactionType(this.selectedTransactionTypeId)
+        .toPromise()
+        .then(res => {
+          this.transactions = res.body || [];
+        });
+    }
+
+    this.transactionService
+      .totalAmountByTransactionType(this.selectedTransactionTypeId)
+      .toPromise()
+      .then(res => {
+        this.totalAmmount = res.body || 0;
+      });
   }
 }

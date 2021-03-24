@@ -1,22 +1,21 @@
 package com.openbank.techtest.service.impl;
 
-import com.openbank.techtest.service.TransactionService;
-import com.openbank.techtest.domain.Transaction;
-import com.openbank.techtest.repository.TransactionRepository;
-import com.openbank.techtest.service.dto.ResponseTransactionDTO;
-import com.openbank.techtest.service.dto.TransactionDTO;
-import com.openbank.techtest.service.mapper.TransactionMapper;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import com.openbank.techtest.domain.Transaction;
+import com.openbank.techtest.repository.TransactionRepository;
+import com.openbank.techtest.service.TransactionService;
+import com.openbank.techtest.service.dto.TransactionDTO;
+import com.openbank.techtest.service.mapper.TransactionMapper;
 
 /**
  * Service Implementation for managing {@link Transaction}.
@@ -66,6 +65,21 @@ public class TransactionServiceImpl implements TransactionService {
         log.debug("Request to delete Transaction : {}", id);
         transactionRepository.deleteById(id);
     }
+    
+    /**
+	 * @author Daniel Pareja Londoño
+	 * @version Mar 24, 2021
+	 *
+	 * @see com.openbank.techtest.service.TransactionService#findAll()
+	 *
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<TransactionDTO> findAll() {
+		List<Transaction> allTransactions = transactionRepository.findAll();
+		List<TransactionDTO> allTransactionsDtos = transactionMapper.toDto(allTransactions);
+		return allTransactionsDtos;
+	}
 
 	/**
 	 * Find the transactions filter for field TransactionTypeId
@@ -98,28 +112,17 @@ public class TransactionServiceImpl implements TransactionService {
 	 *
 	 */
 	@Override
-	public Integer totalAmountByTransactionType(List<TransactionDTO> transactions) {
+	@Transactional(readOnly = true)
+	public Integer totalAmountByTransactionType(Long transactionTypeId) {
+		
+		List<TransactionDTO> transactions;
+		if(transactionTypeId!=null && transactionTypeId.equals(0L)) {
+			transactions = this.findAll();
+		}else {
+			transactions = this.findByTransactionTypeId(transactionTypeId);
+		}
 		Integer totalAmount = transactions.stream().collect(Collectors.summingInt(t->t.getTransactionAmount()));
 		return totalAmount ;
 	}
-
-	/**
-	 * @author Daniel Pareja Londoño
-	 * @version Mar 19, 2021
-	 *
-	 * @see com.openbank.techtest.service.TransactionService#findTransactionsByTransactionType(java.lang.Long)
-	 *
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public Optional<ResponseTransactionDTO> findTransactionsByTransactionType(Long transactionTypeId) {
-		List<TransactionDTO> transactionsDTO = this.findByTransactionTypeId(transactionTypeId);
-		
-		Integer totalAmount = this.totalAmountByTransactionType(transactionsDTO);
-		
-		ResponseTransactionDTO responseTransactionDTO = new ResponseTransactionDTO();
-		responseTransactionDTO.setTotalAmmountForTransactionType(totalAmount);
-		responseTransactionDTO.setTransactionsFilterByTransactionType(transactionsDTO);
-		return Optional.of(responseTransactionDTO);
-	}
+	
 }

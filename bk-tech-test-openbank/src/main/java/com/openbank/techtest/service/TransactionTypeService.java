@@ -1,3 +1,4 @@
+
 package com.openbank.techtest.service;
 
 import com.openbank.techtest.service.dto.TransactionTypeDTO;
@@ -5,6 +6,7 @@ import com.openbank.techtest.service.dto.TransactionTypeDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,4 +45,16 @@ public interface TransactionTypeService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    
+    
+    /**
+     * Get all the transactionTypes.
+     *
+     * @author Daniel Pareja Londoño
+     * @version Mar 20, 2021
+     * @since 1.8
+     * @return <b>{@code List<TransactionTypeDTO>}</b>
+     *
+     */
+    List<TransactionTypeDTO> findAll();
 }

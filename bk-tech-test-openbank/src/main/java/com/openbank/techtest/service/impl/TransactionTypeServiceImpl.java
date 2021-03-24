@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -63,4 +64,20 @@ public class TransactionTypeServiceImpl implements TransactionTypeService {
         log.debug("Request to delete TransactionType : {}", id);
         transactionTypeRepository.deleteById(id);
     }
+
+	/**
+	 * Get all the transactionTypes.
+	 * 
+	 * @author Daniel Pareja Londoño
+	 * @version Mar 20, 2021
+	 *
+	 * @see com.openbank.techtest.service.TransactionTypeService#findAll()
+	 *
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<TransactionTypeDTO> findAll() {
+		List<TransactionType> transactionTypes = transactionTypeRepository.findAll(); 
+		return transactionTypeMapper.toDto(transactionTypes);
+	}
 }

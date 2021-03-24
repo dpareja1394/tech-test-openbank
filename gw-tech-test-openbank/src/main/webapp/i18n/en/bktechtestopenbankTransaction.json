@@ -22,7 +22,8 @@
       "transactionAmount": "Transaction Amount",
       "transactionCurrency": "Transaction Currency",
       "description": "Description",
-      "transactionType": "Transaction Type"
+      "transactionType": "Transaction Type",
+      "totalAmount": "Total Amount"
     }
   },
   "bktechtestopenbankApp": {

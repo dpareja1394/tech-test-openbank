@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { ITransaction } from 'app/shared/model/bktechtestopenbank/transaction.model';
-import { IResponseTransaction } from 'app/shared/model/bktechtestopenbank/response-transaction.model';
 
 type EntityResponseType = HttpResponse<ITransaction>;
 type EntityArrayResponseType = HttpResponse<ITransaction[]>;
@@ -37,9 +36,17 @@ export class TransactionService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  findTransactionsByTransactionType(transactionTypeId: number): Observable<HttpResponse<IResponseTransaction>> {
-    return this.http.get<IResponseTransaction>(`${this.resourceUrl}/findTransactionsByTransactionType/${transactionTypeId}`, {
+  findAll(): Observable<EntityArrayResponseType> {
+    return this.http.get<ITransaction[]>(`${this.resourceUrl}/findAll`, { observe: 'response' });
+  }
+
+  findTransactionsByTransactionType(transactionTypeId: number): Observable<EntityArrayResponseType> {
+    return this.http.get<ITransaction[]>(`${this.resourceUrl}/findTransactionsByTransactionType/${transactionTypeId}`, {
       observe: 'response',
     });
+  }
+
+  totalAmountByTransactionType(transactionTypeId: number): Observable<HttpResponse<number>> {
+    return this.http.get<number>(`${this.resourceUrl}/totalAmountByTransactionType/${transactionTypeId}`, { observe: 'response' });
   }
 }

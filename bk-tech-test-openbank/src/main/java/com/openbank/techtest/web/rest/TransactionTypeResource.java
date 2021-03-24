@@ -123,4 +123,16 @@ public class TransactionTypeResource {
         transactionTypeService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+    
+    /**
+     * {@code GET  /transaction-types} : get all the transactionTypes.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of transactionTypes in body.
+     */
+    @GetMapping("/transaction-types/findAll")
+    public ResponseEntity<List<TransactionTypeDTO>> findAll() {
+        List<TransactionTypeDTO> transactionTypesDTO = transactionTypeService.findAll();
+        return new ResponseEntity<List<TransactionTypeDTO>>(transactionTypesDTO, HttpStatus.OK);
+    }
 }
